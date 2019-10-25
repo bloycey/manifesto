@@ -1,4 +1,5 @@
 import React from "react";
+import "./Manifesto.css";
 import { decompressFromEncodedURIComponent as decompress } from "lz-string";
 
 function Manifesto(props) {
@@ -8,7 +9,6 @@ function Manifesto(props) {
 	const decompressedText = decompress(text);
 	return (
 		<div>
-			<p>It's the manifesto page</p>
 			<p>{decompressedTitle}</p>
 			<p>{decompressedText}</p>
 		</div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { compressToEncodedURIComponent } from "lz-string";
+import { compressToEncodedURIComponent as compress } from "lz-string";
 
 class Home extends Component {
 	constructor(props) {
@@ -14,10 +14,8 @@ class Home extends Component {
 
 	handleSubmit = e => {
 		e.preventDefault();
-		console.log(this.titleInput.current.value);
-		console.log(this.textInput.current.value);
-		const title = compressToEncodedURIComponent(this.titleInput.current.value);
-		const text = compressToEncodedURIComponent(this.textInput.current.value);
+		const title = compress(this.titleInput.current.value);
+		const text = compress(this.textInput.current.value);
 		const linkToManifesto = `${window.location.hostname}:3000/${title}__${text}`
 		this.setState({
 			linkToManifesto
@@ -25,20 +23,24 @@ class Home extends Component {
 	}
 
 	render() {
+		const { linkToManifesto } = this.state;
 		return (
 			<div>
-				<p>It's the home page</p>
 				<form onSubmit={this.handleSubmit}>
 					<label>Title</label>
 					<input type="text" ref={this.titleInput}/>
+					<br/>
 					<label>Text</label>
 					<textarea name="" id="" cols="30" rows="10" ref={this.textInput}>
 					</textarea>
+					<br/>
 					<button type="submit">Submit</button>
 				</form>
-				<div>
-					{this.state.linkToManifesto && <div><a href={this.state.linkToManifesto}>{this.state.linkToManifesto}</a></div>}
-				</div>
+				{linkToManifesto &&
+					<div>
+						<a href={linkToManifesto}>{linkToManifesto}</a>
+					</div>
+				}
 			</div>
 		);
 	}
