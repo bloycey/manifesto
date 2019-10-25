@@ -15,9 +15,12 @@ class Home extends Component {
 	getShortUrl = async (longUrl) => {
 		const url = `https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=${process.env.REACT_APP_FIREBASE_API}`;
 		const data = {
-			"longDynamicLink": longUrl,
-			"suffix": {
-			  "option": "SHORT"
+			"dynamicLinkInfo": {
+				"dynamicLinkDomain": `${window.location.hostname}/`,
+				"link": longUrl
+			  },
+			  "suffix": {
+				"option": "SHORT"
 			}
 		};
 
@@ -40,8 +43,8 @@ class Home extends Component {
 		e.preventDefault();
 		const title = compress(this.titleInput.current.value);
 		const text = compress(this.textInput.current.value);
-		const linkToManifesto = `${window.location.hostname}:3000/${title}__${text}`
-		this.getShortUrl(linkToManifesto);
+		const linkToManifesto = `${window.location.hostname}/${title}__${text}`
+		this.getShortUrl(`${title}__${text}`);
 		this.setState({
 			linkToManifesto
 		})
@@ -53,7 +56,6 @@ class Home extends Component {
 		const { linkToManifesto } = this.state;
 		return (
 			<div>
-				<p>API key is {process.env.REACT_APP_FIREBASE_API}</p>
 				<form onSubmit={this.handleSubmit}>
 					<label>Title</label>
 					<input type="text" ref={this.titleInput}/>
