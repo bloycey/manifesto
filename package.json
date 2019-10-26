@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/core": "^10.0.22",
+    "@emotion/styled": "^10.0.22",
+    "emotion-theming": "^10.0.19",
     "lz-string": "^1.4.4",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
