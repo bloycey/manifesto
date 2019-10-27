@@ -38,7 +38,7 @@ const Title = styled.h1`
 
 const Subtitle = styled.p`
 	color: ${props => props.theme.colors.primary};
-	font-size: 22px;
+	font-size: 20px;
 `
 
 const HomeBanner = () => {

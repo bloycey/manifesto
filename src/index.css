@@ -10,6 +10,13 @@ body {
 	font-weight: 300;
 }
 
+* {
+	font-family: "Muli", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+	"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+	sans-serif;	
+	box-sizing: border-box;
+}
+
 code {
 	font-family: "Fira Code", source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }

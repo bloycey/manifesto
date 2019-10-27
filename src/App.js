@@ -14,7 +14,7 @@ function App() {
 		<Router>
 			<Switch>
 				<Route exact path="/" component={withTheme(Home)}/>
-				<Route path="/post/:data" component={withTheme(Manifesto)}/>
+				<Route path="/post/:data" component={Manifesto}/>
 			</Switch>
 		</Router>
 	);

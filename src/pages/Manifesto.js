@@ -2,7 +2,8 @@ import React from "react";
 import "./Manifesto.css";
 import { decompressFromEncodedURIComponent as decompress } from "lz-string";
 
-function Manifesto(props) {
+const Manifesto = (props) => {
+	console.log(props);
 	const { data } = props.match.params;
 	const [title, text] = data.split("__");
 	const decompressedTitle = decompress(title);
