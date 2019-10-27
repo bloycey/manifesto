@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 import Home from "./pages/Home";
-import Manifesto from "./pages/Manifesto";
+import Post from "./pages/Post";
 import { withTheme } from "./theming/themeFunctions"
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
 		<Router>
 			<Switch>
 				<Route exact path="/" component={withTheme(Home)}/>
-				<Route path="/post/:data" component={Manifesto}/>
+				<Route path="/post/:data" component={Post}/>
 			</Switch>
 		</Router>
 	);

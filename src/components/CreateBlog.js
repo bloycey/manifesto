@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from '@emotion/styled';
 import { compressToEncodedURIComponent as compress } from "lz-string";
+import { Link } from "react-router-dom";
 
 import Button from "../components/Button";
 import Container from "../components/layoutHelpers/Container";
@@ -83,6 +84,7 @@ const ButtonWrapper = styled.div`
 	margin-left: 16.67%;
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 60px;
 
 	button {
 		width: 100%;
@@ -92,7 +94,15 @@ const ButtonWrapper = styled.div`
 		margin-left: 24px;
 		margin-right: 24px;
 	}
+`;
 
+const MessagesContainer = styled.div`
+	margin-left: 16.67%;
+	color: #ffffff;
+
+	a {
+		color: #ffffff;
+	}
 `
 
 class CreateBlog extends Component {
@@ -103,21 +113,21 @@ class CreateBlog extends Component {
 	}
 
 	state = {
-		linkToManifesto: null
+		linkToPost: null
 	}
 
 	handleSubmit = e => {
 		e.preventDefault();
 		const title = compress(this.titleInput.current.value);
 		const text = compress(this.textInput.current.value);
-		const linkToManifesto = `/post/${title}__${text}`
+		const linkToPost = `/post/${title}__${text}`
 		this.setState({
-			linkToManifesto
+			linkToPost
 		})
 	}
 
 	render() {
-		const { linkToManifesto } = this.state;
+		const { linkToPost } = this.state;
 		return (
 			<CreateBlogWrapper>
 				<Container>
@@ -139,16 +149,16 @@ class CreateBlog extends Component {
 							</InputWrapper>
 						</FloatedFormElement>
 						<ButtonWrapper>
-							<Button type="submit" buttonType="outline">Save</Button>
-							<Button type="submit" buttonType="outline">Preview</Button>
+							<Button type="button" buttonType="outline">Save</Button>
+							<Button type="button" buttonType="outline">Preview</Button>
 							<Button type="submit" buttonType="primary">Post</Button>
 						</ButtonWrapper>
 					</form>
-					{linkToManifesto &&
-						<div>
-							<a href={linkToManifesto}>{linkToManifesto}</a>
-						</div>
-					}
+						{linkToPost &&
+							<MessagesContainer>
+								Blog Posted. Click <Link to={linkToPost}>here</Link> to view.
+							</MessagesContainer>
+						}
 				</Container>
 			</CreateBlogWrapper>
 		);
