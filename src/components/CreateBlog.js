@@ -5,79 +5,13 @@ import { Link } from "react-router-dom";
 
 import Button from "../components/Button";
 import Container from "../components/layoutHelpers/Container";
+import SingleInput from "../components/formElements/SingleInput";
+import TextArea from "../components/formElements/TextArea";
 
 const CreateBlogWrapper = styled.section`
 	background-color: ${props => props.theme.colors.primary};
 	padding-top: 72px;
 	padding-bottom: 72px;
-`;
-
-const FormElement = styled.div`
-	display: flex;
-	margin-bottom: 60px;
-`;
-
-const FloatedFormElement = styled.div`
-	display: block;
-	margin-bottom: 60px;
-
-	Label {
-		float: left;
-		width: 20%;
-	}
-
-	InputWrapper {
-		float: right;
-	}
-
-	textarea {
-		width: 100%;
-		height: 500px;
-		border: 0;
-		margin: 0;
-		padding: 18px 36px;
-		font-size: 18px;
-	}
-
-	textarea::placeholder {
-		opacity: 0.7;
-	}
-`
-
-const Label = styled.label`
-	background-color: ${props => props.theme.colors.secondary};
-	color: #ffffff;
-	flex-basis: 100%;
-	flex: 1;
-	text-align: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 60px;
-	text-transform: uppercase;
-	font-weight: 700;
-	font-size: 18px;
-`;
-
-const InputWrapper = styled.div`
-	background-color: #ffffff;
-	flex: 4;
-	overflow: hidden;
-
-	input {
-		color: ${props => props.theme.colors.bodyText};
-		height: 60px;
-		border: 0;
-		padding: 0;
-		padding-left: 36px;
-		width: 100%;
-		font-size: 18px;
-		max-width: 100%;
-	}
-
-	input::placeholder {
-		opacity: 0.7;
-	}
 `;
 
 const ButtonWrapper = styled.div`
@@ -179,29 +113,26 @@ class CreateBlog extends Component {
 	};
 
 	render() {
-		const { formProgress, linkToPost, title, body } = this.state;
+		const { formProgress, linkToPost } = this.state;
 		return (
 			<CreateBlogWrapper>
 				<Container>
 					<form onSubmit={this.handleSubmit}>
 						{ formProgress === 1 &&
 							<>
-							<FormElement>
-								<Label>
-									<p>Blog Title</p>
-								</Label>
-								<InputWrapper>
-									<input type="text" ref={this.title} placeholder="E.g. How to make friends and influence people" name="title" onChange={this.handleChange}/>
-								</InputWrapper>
-							</FormElement>
-							<FloatedFormElement>
-								<Label>
-									<p>Blog Body</p>
-								</Label>
-								<InputWrapper>
-									<textarea ref={this.text} name="body" placeholder="Create your magic here" onChange={this.handleChange}/>
-								</InputWrapper>
-							</FloatedFormElement>
+							<SingleInput
+								title="Blog Title"
+								inputType="text"
+								inputName="title"
+								placeholder="E.g. How to make friends and influence people"
+								onChangeFn={this.handleChange}
+							/>
+							<TextArea
+								title="Blog Body"
+								name="body"
+								placeholder="Create your magic here"
+								onChangeFn={this.handleChange}
+							/>
 							<ButtonWrapperNext>
 								<Button buttonStyle="outline" buttonType="button" clickEvent={this.handleNext}>Next</Button>
 							</ButtonWrapperNext>
@@ -210,23 +141,21 @@ class CreateBlog extends Component {
 						{ formProgress === 2 &&
 						<>
 							<OptionalTag>*Optional</OptionalTag>
-							<FormElement>
-								<Label>
-									<p>Author Name</p>
-								</Label>
-								<InputWrapper>
-									<input type="text" ref={this.author} name="author" placeholder="E.g. J D Salinger" onChange={this.handleChange}/>
-								</InputWrapper>
-							</FormElement>
+							<SingleInput
+								title="Author Name"
+								inputType="text"
+								inputName="author"
+								placeholder="E.g. J D Salinger"
+								onChangeFn={this.handleChange}
+							/>
 							<OptionalTag>*Optional</OptionalTag>
-							<FormElement>
-								<Label>
-									<p>Author Website</p>
-								</Label>
-								<InputWrapper>
-									<input type="text" ref={this.website} name="website" placeholder="E.g. J D Salinger" onChange={this.handleChange}/>
-								</InputWrapper>
-							</FormElement>
+							<SingleInput
+								title="Author Website"
+								inputType="text"
+								inputName="website"
+								placeholder="www.mywebsite.com"
+								onChangeFn={this.handleChange}
+							/>
 							<ButtonWrapperPrevNext>
 								<Button buttonStyle="outline" buttonType="button" clickEvent={this.handlePrev}>Previous</Button>
 								<Button buttonStyle="outline" buttonType="button" clickEvent={this.handleNext}>Next</Button>
