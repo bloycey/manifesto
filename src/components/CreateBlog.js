@@ -7,6 +7,7 @@ import Button from "../components/Button";
 import Container from "../components/layoutHelpers/Container";
 import SingleInput from "../components/formElements/SingleInput";
 import TextArea from "../components/formElements/TextArea";
+import YesNoBoolean from "../components/formElements/YesNoBoolean";
 
 const CreateBlogWrapper = styled.section`
 	background-color: ${props => props.theme.colors.primary};
@@ -67,7 +68,7 @@ const OptionalTag = styled.div`
 
 class CreateBlog extends Component {
 	state = {
-		formProgress: 1,
+		formProgress: 2,
 		title: "",
 		body: "",
 		author: "",
@@ -103,10 +104,6 @@ class CreateBlog extends Component {
 			formProgress: this.state.formProgress - 1
 		})
 	}
-
-	handlePreview = () => {
-		console.log("You clicked preview!");
-	};
 
 	handleSave = () => {
 		console.log("You clicked save!");
@@ -167,6 +164,9 @@ class CreateBlog extends Component {
 								value={website}
 								onChangeFn={this.handleChange}
 							/>
+							<div>
+								<YesNoBoolean />
+							</div>
 							<ButtonWrapperPrevNext>
 								<Button buttonStyle="outline" buttonType="button" clickEvent={this.handlePrev}>Previous</Button>
 								<Button buttonStyle="outline" buttonType="button" clickEvent={this.handleNext}>Next</Button>
@@ -176,7 +176,6 @@ class CreateBlog extends Component {
 						{ formProgress === 3 &&
 							<ButtonWrapper>
 								<Button buttonStyle="outline" buttonType="button" clickEvent={this.handlePrev}>Previous</Button>
-								{/* <Button buttonType="button" buttonStyle="outline" clickEvent={this.handlePreview}>Preview</Button> */}
 								<Button buttonType="button" buttonStyle="outline" clickEvent={this.handleSave}>Save</Button>
 								<Button buttonType="submit" buttonStyle="primary">Post</Button>
 							</ButtonWrapper>
