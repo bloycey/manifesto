@@ -113,7 +113,14 @@ class CreateBlog extends Component {
 	};
 
 	render() {
-		const { formProgress, linkToPost } = this.state;
+		const {
+			formProgress,
+			linkToPost,
+			title,
+			body,
+			author,
+			website
+		} = this.state;
 		return (
 			<CreateBlogWrapper>
 				<Container>
@@ -125,12 +132,14 @@ class CreateBlog extends Component {
 								inputType="text"
 								inputName="title"
 								placeholder="E.g. How to make friends and influence people"
+								value={title}
 								onChangeFn={this.handleChange}
 							/>
 							<TextArea
 								title="Blog Body"
 								name="body"
 								placeholder="Create your magic here"
+								value={body}
 								onChangeFn={this.handleChange}
 							/>
 							<ButtonWrapperNext>
@@ -146,6 +155,7 @@ class CreateBlog extends Component {
 								inputType="text"
 								inputName="author"
 								placeholder="E.g. J D Salinger"
+								value={author}
 								onChangeFn={this.handleChange}
 							/>
 							<OptionalTag>*Optional</OptionalTag>
@@ -154,6 +164,7 @@ class CreateBlog extends Component {
 								inputType="text"
 								inputName="website"
 								placeholder="www.mywebsite.com"
+								value={website}
 								onChangeFn={this.handleChange}
 							/>
 							<ButtonWrapperPrevNext>

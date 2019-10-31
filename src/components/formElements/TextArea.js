@@ -30,14 +30,19 @@ const FloatedFormElement = styled.div`
 	}
 `;
 
-const TextArea = ({ title, name, placeholder, onChangeFn }) => {
+const TextArea = ({ title, name, placeholder, value, onChangeFn }) => {
 	return (
 		<FloatedFormElement>
 			<Label>
 				<p>{title}</p>
 			</Label>
 			<InputWrapper>
-				<textarea name={name} placeholder={placeholder} onChange={onChangeFn}/>
+				<textarea
+					name={name}
+					placeholder={placeholder}
+					value={value}
+					onChange={onChangeFn}
+				/>
 			</InputWrapper>
 		</FloatedFormElement>
 	);

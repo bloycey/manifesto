@@ -42,14 +42,20 @@ export const InputWrapper = styled.div`
 	}
 `;
 
-const SingleInput = ({ title, inputType, inputName, placeholder, onChangeFn }) => {
+const SingleInput = ({ title, inputType, inputName, placeholder, value, onChangeFn }) => {
 	return (
 		<FormElement>
 			<Label>
 				<p>{title}</p>
 			</Label>
 			<InputWrapper>
-				<input type={inputType} placeholder={placeholder} name={inputName} onChange={onChangeFn}/>
+				<input
+					type={inputType}
+					placeholder={placeholder}
+					name={inputName}
+					value={value}
+					onChange={onChangeFn}
+				/>
 			</InputWrapper>
 		</FormElement>
 	)
