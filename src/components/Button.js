@@ -3,8 +3,8 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { theme } from "../theming/theme";
 
-const getButtonStyle = buttonType => {
-	switch(buttonType) {
+const getButtonStyle = buttonStyle => {
+	switch(buttonStyle) {
 		case "outline":
 			return css`
 				border: 2px solid #ffffff;
@@ -32,16 +32,16 @@ const StyledButton = styled.button`
 	text-transform: uppercase;
 	font-weight: 700;
 	transition: all 0.3s ease;
-	${props => getButtonStyle(props.buttonType)};
+	${props => getButtonStyle(props.buttonStyle)};
 
 	&:hover {
 		cursor: pointer;
 	}
 `;
 
-const Button = ({ buttonType, children, icon }) => {
+const Button = ({ buttonType, buttonStyle, children, icon, clickEvent }) => {
 	return (
-		<StyledButton buttonType={buttonType}>
+		<StyledButton buttonType={buttonType} buttonStyle={buttonStyle} type="button" onClick={clickEvent}>
 			{ children }
 		</StyledButton>
 	)

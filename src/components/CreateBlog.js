@@ -23,7 +23,7 @@ const FloatedFormElement = styled.div`
 
 	Label {
 		float: left;
-		width: 16.67%;
+		width: 20%;
 	}
 
 	InputWrapper {
@@ -61,7 +61,7 @@ const Label = styled.label`
 
 const InputWrapper = styled.div`
 	background-color: #ffffff;
-	flex: 5;
+	flex: 4;
 	overflow: hidden;
 
 	input {
@@ -81,78 +81,166 @@ const InputWrapper = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
-	margin-left: 16.67%;
+	margin-left: 20%;
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 60px;
 
 	button {
 		width: 100%;
-	}
-
-	button:nth-of-type(2) {
 		margin-left: 24px;
 		margin-right: 24px;
+	}
+
+	button:first-of-type, button:last-of-type {
+		margin-left: 0;
+		margin-right: 0;
+	}
+`;
+
+const ButtonWrapperNext = styled.div`
+	text-align: right;
+
+	button {
+		display: inline-block;
+		width: 25%;
+	}
+`;
+
+const ButtonWrapperPrevNext = styled.div`
+	display: flex;
+	justify-content: space-between;
+
+	button {
+		width: 20%;
 	}
 `;
 
 const MessagesContainer = styled.div`
-	margin-left: 16.67%;
+	margin-left: 20%;
 	color: #ffffff;
 
 	a {
 		color: #ffffff;
 	}
+`;
+
+const OptionalTag = styled.div`
+	color: #9f9f9f;
+	margin-top: -20px;
+	margin-bottom: 5px;
 `
 
 class CreateBlog extends Component {
-	constructor(props) {
-		super(props);
-		this.titleInput = React.createRef();
-		this.textInput = React.createRef();
-	}
-
 	state = {
+		formProgress: 1,
+		title: "",
+		body: "",
+		author: "",
+		website: "",
 		linkToPost: null
 	}
 
 	handleSubmit = e => {
 		e.preventDefault();
-		const title = compress(this.titleInput.current.value);
-		const text = compress(this.textInput.current.value);
-		const linkToPost = `/post/${title}__${text}`
+		const { title, body, author, website } = this.state;
+		const compressedTitle = compress(title);
+		const compressedBody = compress(body);
+		const linkToPost = `/post/${compressedTitle}__${compressedBody}`
 		this.setState({
 			linkToPost
 		})
 	}
 
+	handleChange = e => {
+		this.setState({
+			[e.target.name]: e.target.value
+		})
+	}
+
+	handleNext = () => {
+		this.setState({
+			formProgress: this.state.formProgress + 1
+		})
+	}
+
+	handlePrev = () => {
+		this.setState({
+			formProgress: this.state.formProgress - 1
+		})
+	}
+
+	handlePreview = () => {
+		console.log("You clicked preview!");
+	};
+
+	handleSave = () => {
+		console.log("You clicked save!");
+	};
+
 	render() {
-		const { linkToPost } = this.state;
+		const { formProgress, linkToPost, title, body } = this.state;
 		return (
 			<CreateBlogWrapper>
 				<Container>
 					<form onSubmit={this.handleSubmit}>
-						<FormElement>
-							<Label>
-								<p>Blog Title</p>
-							</Label>
-							<InputWrapper>
-								<input type="text" ref={this.titleInput} placeholder="E.g. How to make friends and influence people"/>
-							</InputWrapper>
-						</FormElement>
-						<FloatedFormElement>
-							<Label>
-								<p>Blog Body</p>
-							</Label>
-							<InputWrapper>
-								<textarea ref={this.textInput} placeholder="Create your magic here"/>
-							</InputWrapper>
-						</FloatedFormElement>
-						<ButtonWrapper>
-							<Button type="button" buttonType="outline">Save</Button>
-							<Button type="button" buttonType="outline">Preview</Button>
-							<Button type="submit" buttonType="primary">Post</Button>
-						</ButtonWrapper>
+						{ formProgress === 1 &&
+							<>
+							<FormElement>
+								<Label>
+									<p>Blog Title</p>
+								</Label>
+								<InputWrapper>
+									<input type="text" ref={this.title} placeholder="E.g. How to make friends and influence people" name="title" onChange={this.handleChange}/>
+								</InputWrapper>
+							</FormElement>
+							<FloatedFormElement>
+								<Label>
+									<p>Blog Body</p>
+								</Label>
+								<InputWrapper>
+									<textarea ref={this.text} name="body" placeholder="Create your magic here" onChange={this.handleChange}/>
+								</InputWrapper>
+							</FloatedFormElement>
+							<ButtonWrapperNext>
+								<Button buttonStyle="outline" buttonType="button" clickEvent={this.handleNext}>Next</Button>
+							</ButtonWrapperNext>
+							</>
+						}
+						{ formProgress === 2 &&
+						<>
+							<OptionalTag>*Optional</OptionalTag>
+							<FormElement>
+								<Label>
+									<p>Author Name</p>
+								</Label>
+								<InputWrapper>
+									<input type="text" ref={this.author} name="author" placeholder="E.g. J D Salinger" onChange={this.handleChange}/>
+								</InputWrapper>
+							</FormElement>
+							<OptionalTag>*Optional</OptionalTag>
+							<FormElement>
+								<Label>
+									<p>Author Website</p>
+								</Label>
+								<InputWrapper>
+									<input type="text" ref={this.website} name="website" placeholder="E.g. J D Salinger" onChange={this.handleChange}/>
+								</InputWrapper>
+							</FormElement>
+							<ButtonWrapperPrevNext>
+								<Button buttonStyle="outline" buttonType="button" clickEvent={this.handlePrev}>Previous</Button>
+								<Button buttonStyle="outline" buttonType="button" clickEvent={this.handleNext}>Next</Button>
+							</ButtonWrapperPrevNext>
+							</>
+						}
+						{ formProgress === 3 &&
+							<ButtonWrapper>
+								<Button buttonStyle="outline" buttonType="button" clickEvent={this.handlePrev}>Previous</Button>
+								{/* <Button buttonType="button" buttonStyle="outline" clickEvent={this.handlePreview}>Preview</Button> */}
+								<Button buttonType="button" buttonStyle="outline" clickEvent={this.handleSave}>Save</Button>
+								<Button buttonType="submit" buttonStyle="primary">Post</Button>
+							</ButtonWrapper>
+						}
 					</form>
 						{linkToPost &&
 							<MessagesContainer>
