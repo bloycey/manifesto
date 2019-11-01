@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled';
 
-const FormElement = styled.div`
+export const FormElement = styled.div`
 	display: flex;
 	margin-bottom: 60px;
 `;

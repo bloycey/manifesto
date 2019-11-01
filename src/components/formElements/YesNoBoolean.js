@@ -1,20 +1,28 @@
 import React from "react";
 import "./YesNoBoolean.css";
+import { FormElement, Label } from "../formElements/SingleInput";
 
-const YesNoBoolean = () => {
+const YesNoBoolean = ({ onChangeFn}) => {
 	return (
-		<ul>
-			<li>
-				<input type="radio" id="f-option" name="selector" checked />
-				<label for="f-option">Yes</label>
-				<div class="check"></div>
+		<FormElement>
+			<Label>
+				<p>Show Date</p>
+			</Label>
+			<ul>
+				<li></li>
+				<li>
+				<input type="radio" id="yes-option" name="showDate" defaultChecked onChange={onChangeFn}/>
+				<label htmlFor="yes-option">Yes</label>
+				<div className="check"></div>
 			</li>
 			<li>
-				<input type="radio" id="s-option" name="selector" />
-				<label for="s-option">No</label>
-				<div class="check"><div class="inside"></div></div>
+				<input type="radio" id="no-option" name="showDate" onChange={onChangeFn}/>
+				<label htmlFor="no-option">No</label>
+				<div className="check"><div className="inside"></div></div>
 			</li>
-		</ul>
+				<li></li>
+			</ul>
+		</FormElement>
 	)
 }
 

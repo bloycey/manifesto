@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import styled from '@emotion/styled';
 import { compressToEncodedURIComponent as compress } from "lz-string";
 import { Link } from "react-router-dom";
 
 import Button from "../components/Button";
 import Container from "../components/layoutHelpers/Container";
+import FloatedContent from "../components/formElements/FloatedContent";
 import SingleInput from "../components/formElements/SingleInput";
 import TextArea from "../components/formElements/TextArea";
 import YesNoBoolean from "../components/formElements/YesNoBoolean";
@@ -68,11 +69,12 @@ const OptionalTag = styled.div`
 
 class CreateBlog extends Component {
 	state = {
-		formProgress: 2,
+		formProgress: 3,
 		title: "",
 		body: "",
 		author: "",
 		website: "",
+		showDate: true,
 		linkToPost: null
 	}
 
@@ -90,6 +92,13 @@ class CreateBlog extends Component {
 	handleChange = e => {
 		this.setState({
 			[e.target.name]: e.target.value
+		})
+	}
+
+	handleRadioChange = e => {
+		const val = this.state[e.target.name];
+		this.setState({
+			[e.target.name]: !val
 		})
 	}
 
@@ -123,7 +132,7 @@ class CreateBlog extends Component {
 				<Container>
 					<form onSubmit={this.handleSubmit}>
 						{ formProgress === 1 &&
-							<>
+							<Fragment>
 							<SingleInput
 								title="Blog Title"
 								inputType="text"
@@ -142,10 +151,10 @@ class CreateBlog extends Component {
 							<ButtonWrapperNext>
 								<Button buttonStyle="outline" buttonType="button" clickEvent={this.handleNext}>Next</Button>
 							</ButtonWrapperNext>
-							</>
+							</Fragment>
 						}
 						{ formProgress === 2 &&
-						<>
+							<Fragment>
 							<OptionalTag>*Optional</OptionalTag>
 							<SingleInput
 								title="Author Name"
@@ -165,20 +174,25 @@ class CreateBlog extends Component {
 								onChangeFn={this.handleChange}
 							/>
 							<div>
-								<YesNoBoolean />
+								<YesNoBoolean onChangeFn={this.handleRadioChange}/>
 							</div>
 							<ButtonWrapperPrevNext>
 								<Button buttonStyle="outline" buttonType="button" clickEvent={this.handlePrev}>Previous</Button>
 								<Button buttonStyle="outline" buttonType="button" clickEvent={this.handleNext}>Next</Button>
 							</ButtonWrapperPrevNext>
-							</>
+							</Fragment>
 						}
 						{ formProgress === 3 &&
-							<ButtonWrapper>
-								<Button buttonStyle="outline" buttonType="button" clickEvent={this.handlePrev}>Previous</Button>
-								<Button buttonType="button" buttonStyle="outline" clickEvent={this.handleSave}>Save</Button>
-								<Button buttonType="submit" buttonStyle="primary">Post</Button>
-							</ButtonWrapper>
+							<Fragment>
+								<FloatedContent title="Theme">HELLO</FloatedContent>
+								<div>
+									<ButtonWrapper>
+										<Button buttonStyle="outline" buttonType="button" clickEvent={this.handlePrev}>Previous</Button>
+										<Button buttonType="button" buttonStyle="outline" clickEvent={this.handleSave}>Save</Button>
+										<Button buttonType="submit" buttonStyle="primary">Post</Button>
+									</ButtonWrapper>
+								</div>
+							</Fragment>
 						}
 					</form>
 						{linkToPost &&

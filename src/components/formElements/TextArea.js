@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 
 import { Label, InputWrapper } from "../formElements/SingleInput";
 
-const FloatedFormElement = styled.div`
-	display: block;
+export const FloatedFormElement = styled.div`
+	display: flex;
 	margin-bottom: 60px;
 
 	Label {
