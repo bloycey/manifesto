@@ -6,16 +6,16 @@ import postThemes from "../theming/theme";
 
 const PostTitle = styled.h1`
 	padding-top: 220px;
-	font-size: ${postThemes.sunsetTheme.sizes.heading};
-	color: ${postThemes.sunsetTheme.colors.text};
-	line-height: ${postThemes.sunsetTheme.sizes.headingLineHeight}
+	font-size: ${postThemes[0].sizes.heading};
+	color: ${postThemes[0].colors.text};
+	line-height: ${postThemes[0].sizes.headingLineHeight}
 `
 
 const PostBody = styled.p`
 	white-space: pre-wrap;
-	font-size: ${postThemes.sunsetTheme.sizes.body};
-	color: ${postThemes.sunsetTheme.colors.text};
-	line-height: ${postThemes.sunsetTheme.sizes.bodyLineHeight};
+	font-size: ${postThemes[0].sizes.body};
+	color: ${postThemes[0].colors.text};
+	line-height: ${postThemes[0].sizes.bodyLineHeight};
 	padding-bottom: 220px;
 `
 const PostContainer = styled.div`
@@ -28,7 +28,7 @@ const PostContainer = styled.div`
 
 const PostWrapper = styled.div`
 	min-height: 100vh;
-	background-color: ${postThemes.sunsetTheme.colors.background};
+	background-color: ${postThemes[0].colors.background};
 `
 const Divider = styled.hr`
 	border-color: #ffffff;

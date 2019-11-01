@@ -8,7 +8,9 @@ import Container from "../components/layoutHelpers/Container";
 import FloatedContent from "../components/formElements/FloatedContent";
 import SingleInput from "../components/formElements/SingleInput";
 import TextArea from "../components/formElements/TextArea";
+import ThemeOptions from "../components/formElements/ThemeOptions";
 import YesNoBoolean from "../components/formElements/YesNoBoolean";
+import { postThemes } from "../theming/theme";
 
 const CreateBlogWrapper = styled.section`
 	background-color: ${props => props.theme.colors.primary};
@@ -184,7 +186,7 @@ class CreateBlog extends Component {
 						}
 						{ formProgress === 3 &&
 							<Fragment>
-								<FloatedContent title="Theme">HELLO</FloatedContent>
+								<FloatedContent title="Theme"><ThemeOptions themes={postThemes} /></FloatedContent>
 								<div>
 									<ButtonWrapper>
 										<Button buttonStyle="outline" buttonType="button" clickEvent={this.handlePrev}>Previous</Button>

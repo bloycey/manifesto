@@ -8,6 +8,7 @@ export const theme = {
 }
 
 const sunsetTheme = {
+	name: "SunsetTheme",
 	colors: {
 		background: "#5D3137",
 		footerStripe: "#7E4950",
@@ -18,11 +19,13 @@ const sunsetTheme = {
 		body: "20px",
 		bodyLineHeight: "1.6",
 		headingLineHeight: "1.4"
+	},
+	fonts: {
+		heading: "Merriweather",
+		body: "Muli"
 	}
 }
 
-export const postThemes = {
-	sunsetTheme
-}
+export const postThemes = [sunsetTheme]
 
 export default postThemes;
