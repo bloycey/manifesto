@@ -7,10 +7,9 @@ import { FloatedFormElement } from "../formElements/TextArea";
 const Content = styled.div`
 	float: right;
 	width: 80%;
-	height: 250px;
 	background-color: #ffffff;
-	padding: 20px 35px;
-`
+	padding: 30px 40px;
+`;
 
 const FloatedContent = ({title, children}) => {
 	return (
