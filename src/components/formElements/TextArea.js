@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from '@emotion/styled';
 
-import { Label, InputWrapper } from "../formElements/SingleInput";
+import { InputWrapper } from "../formElements/SingleInput";
+import Label from "../formElements/Label";
 
 export const FloatedFormElement = styled.div`
 	display: flex;
@@ -33,9 +34,7 @@ export const FloatedFormElement = styled.div`
 const TextArea = ({ title, name, placeholder, value, onChangeFn }) => {
 	return (
 		<FloatedFormElement>
-			<Label>
-				<p>{title}</p>
-			</Label>
+			<Label>{title}</Label>
 			<InputWrapper>
 				<textarea
 					name={name}

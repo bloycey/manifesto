@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import Container from "../components/layoutHelpers/Container";
 import FloatedContent from "../components/formElements/FloatedContent";
+import Label from "../components/formElements/Label";
 import SingleInput from "../components/formElements/SingleInput";
 import TextArea from "../components/formElements/TextArea";
 import ThemeOptions from "../components/formElements/ThemeOptions";
@@ -187,13 +188,11 @@ class CreateBlog extends Component {
 						{ formProgress === 3 &&
 							<Fragment>
 								<FloatedContent title="Theme"><ThemeOptions themes={postThemes} /></FloatedContent>
-								<div>
 									<ButtonWrapper>
 										<Button buttonStyle="outline" buttonType="button" clickEvent={this.handlePrev}>Previous</Button>
 										<Button buttonType="button" buttonStyle="outline" clickEvent={this.handleSave}>Save</Button>
 										<Button buttonType="submit" buttonStyle="primary">Post</Button>
 									</ButtonWrapper>
-								</div>
 							</Fragment>
 						}
 					</form>

@@ -1,13 +1,12 @@
 import React from "react";
 import "./YesNoBoolean.css";
-import { FormElement, Label } from "../formElements/SingleInput";
+import { FormElement } from "../formElements/SingleInput";
+import Label from "../formElements/Label";
 
 const YesNoBoolean = ({ onChangeFn}) => {
 	return (
 		<FormElement>
-			<Label>
-				<p>Show Date</p>
-			</Label>
+			<Label>Show Date</Label>
 			<ul>
 				<li></li>
 				<li>

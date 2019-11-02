@@ -1,7 +1,7 @@
-import React, {Fragment} from "react";
+import React from "react";
 import styled from '@emotion/styled';
 
-import { Label } from "../formElements/SingleInput";
+import Label from "../formElements/Label";
 import { FloatedFormElement } from "../formElements/TextArea";
 
 const Content = styled.div`
@@ -14,9 +14,7 @@ const Content = styled.div`
 const FloatedContent = ({title, children}) => {
 	return (
 		<FloatedFormElement>
-			<Label>
-				<p>{title}</p>
-			</Label>
+			<Label>{title}</Label>
 			<Content>
 				{children}
 			</Content>
