@@ -1,5 +1,6 @@
-import React, { Fragment } from "react";
+import React from "react";
 import styled from '@emotion/styled';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 const ThemeCardsWrapper = styled.div`
 	display: flex;
@@ -9,6 +10,7 @@ const ThemeCardsWrapper = styled.div`
 `;
 
 const CardWrapper = styled.div`
+	position: relative;
 	display: inline-block;
 	width: 30%;
 `;
@@ -17,15 +19,44 @@ const ThemeName = styled.p`
 	padding-top: 10px;
 	text-align: center;
 	margin-bottom: 30px;
+`;
+
+const SelectedCheck = styled.div`
+	display: inline-block;
+	position: absolute;
+	right: 0;
+	top: 0;
+	transform: translate(20%, -25%);
+
+	svg {
+		width: 40px;
+		height: 40px;
+		color: ${props => props.theme.colors.secondary};
+	}
 `
 
-const ThemeOptions = ({themes}) => {
+const ThemeOptions = ({themes, onClickFn, selectedTheme}) => {
 	return (
 		<ThemeCardsWrapper>
 			{themes.map(theme => (
-				<CardWrapper>
-					<img src={theme.images.thumbnail} />
-					<ThemeName>{theme.name}</ThemeName>
+				<CardWrapper key={theme.name}>
+					{selectedTheme === theme.key &&
+						<SelectedCheck>
+							<CheckCircleIcon />
+						</SelectedCheck>
+					}
+					<img 
+						src={theme.images.thumbnail}
+						alt={`${theme.name} preview`} 
+						data-value={theme.key}
+						onClick={onClickFn}
+					/>
+					<ThemeName>
+						{selectedTheme === theme.key
+							? <strong>{theme.name}</strong>
+							: <span>{theme.name}</span>
+						}
+					</ThemeName>
 				</CardWrapper>
 			))}
 		</ThemeCardsWrapper>

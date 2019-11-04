@@ -1,58 +1,18 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import styled from '@emotion/styled';
 import { compressToEncodedURIComponent as compress } from "lz-string";
 import { Link } from "react-router-dom";
 
-import Button from "../components/Button";
 import Container from "../components/layoutHelpers/Container";
-import FloatedContent from "../components/formElements/FloatedContent";
-import Label from "../components/formElements/Label";
-import SingleInput from "../components/formElements/SingleInput";
-import TextArea from "../components/formElements/TextArea";
-import ThemeOptions from "../components/formElements/ThemeOptions";
-import YesNoBoolean from "../components/formElements/YesNoBoolean";
+import FormPageOne from "./formElements/formPages/formPageOne";
+import FormPageTwo from "./formElements/formPages/formPageTwo";
+import FormPageThree from "./formElements/formPages/formPageThree";
 import { postThemes } from "../theming/theme";
 
 const CreateBlogWrapper = styled.section`
 	background-color: ${props => props.theme.colors.primary};
 	padding-top: 72px;
 	padding-bottom: 72px;
-`;
-
-const ButtonWrapper = styled.div`
-	margin-left: 20%;
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 60px;
-
-	button {
-		width: 100%;
-		margin-left: 24px;
-		margin-right: 24px;
-	}
-
-	button:first-of-type, button:last-of-type {
-		margin-left: 0;
-		margin-right: 0;
-	}
-`;
-
-const ButtonWrapperNext = styled.div`
-	text-align: right;
-
-	button {
-		display: inline-block;
-		width: 25%;
-	}
-`;
-
-const ButtonWrapperPrevNext = styled.div`
-	display: flex;
-	justify-content: space-between;
-
-	button {
-		width: 20%;
-	}
 `;
 
 const MessagesContainer = styled.div`
@@ -64,11 +24,6 @@ const MessagesContainer = styled.div`
 	}
 `;
 
-const OptionalTag = styled.div`
-	color: #9f9f9f;
-	margin-top: -20px;
-	margin-bottom: 5px;
-`
 
 class CreateBlog extends Component {
 	state = {
@@ -77,13 +32,14 @@ class CreateBlog extends Component {
 		body: "",
 		author: "",
 		website: "",
+		theme: "ronBurgundy",
 		showDate: true,
 		linkToPost: null
 	}
 
 	handleSubmit = e => {
 		e.preventDefault();
-		const { title, body, author, website } = this.state;
+		const { title, body } = this.state;
 		const compressedTitle = compress(title);
 		const compressedBody = compress(body);
 		const linkToPost = `/post/${compressedTitle}__${compressedBody}`
@@ -102,6 +58,13 @@ class CreateBlog extends Component {
 		const val = this.state[e.target.name];
 		this.setState({
 			[e.target.name]: !val
+		})
+	}
+
+	handleChooseTheme = e => {
+		const themeName = e.target.getAttribute('data-value');
+		this.setState({
+			theme: themeName
 		})
 	}
 
@@ -128,72 +91,39 @@ class CreateBlog extends Component {
 			title,
 			body,
 			author,
-			website
+			website,
+			theme
 		} = this.state;
 		return (
 			<CreateBlogWrapper>
 				<Container>
 					<form onSubmit={this.handleSubmit}>
 						{ formProgress === 1 &&
-							<Fragment>
-							<SingleInput
-								title="Blog Title"
-								inputType="text"
-								inputName="title"
-								placeholder="E.g. How to make friends and influence people"
-								value={title}
+							<FormPageOne
+								title={title}
+								body={body}
 								onChangeFn={this.handleChange}
+								handleNextFn={this.handleNext}
 							/>
-							<TextArea
-								title="Blog Body"
-								name="body"
-								placeholder="Create your magic here"
-								value={body}
-								onChangeFn={this.handleChange}
-							/>
-							<ButtonWrapperNext>
-								<Button buttonStyle="outline" buttonType="button" clickEvent={this.handleNext}>Next</Button>
-							</ButtonWrapperNext>
-							</Fragment>
 						}
 						{ formProgress === 2 &&
-							<Fragment>
-							<OptionalTag>*Optional</OptionalTag>
-							<SingleInput
-								title="Author Name"
-								inputType="text"
-								inputName="author"
-								placeholder="E.g. J D Salinger"
-								value={author}
+							<FormPageTwo
+								author={author}
+								website={website}
 								onChangeFn={this.handleChange}
+								onRadioChangeFn={this.handleRadioChange}
+								onNextFn={this.handleNext}
+								onPrevFn={this.handlePrev}
 							/>
-							<OptionalTag>*Optional</OptionalTag>
-							<SingleInput
-								title="Author Website"
-								inputType="text"
-								inputName="website"
-								placeholder="www.mywebsite.com"
-								value={website}
-								onChangeFn={this.handleChange}
-							/>
-							<div>
-								<YesNoBoolean onChangeFn={this.handleRadioChange}/>
-							</div>
-							<ButtonWrapperPrevNext>
-								<Button buttonStyle="outline" buttonType="button" clickEvent={this.handlePrev}>Previous</Button>
-								<Button buttonStyle="outline" buttonType="button" clickEvent={this.handleNext}>Next</Button>
-							</ButtonWrapperPrevNext>
-							</Fragment>
 						}
 						{ formProgress === 3 &&
-							<Fragment>
-								<FloatedContent title="Theme"><ThemeOptions themes={postThemes} /></FloatedContent>
-									<ButtonWrapper>
-										<Button buttonStyle="outline" buttonType="button" clickEvent={this.handlePrev}>Previous</Button>
-										<Button buttonType="button" buttonStyle="outline" clickEvent={this.handleSave}>Save</Button>
-										<Button buttonType="submit" buttonStyle="primary">Post</Button>
-									</ButtonWrapper>
-							</Fragment>
+							<FormPageThree
+								themes={postThemes}
+								selectedTheme={theme}
+								themeSelectFn={this.handleChooseTheme}
+								onNextFn={this.handleNext}
+								onPrevFn={this.handlePrev}
+							/>
 						}
 					</form>
 						{linkToPost &&

@@ -1,9 +1,9 @@
-import burgundy from "./themeImgs/burgundy.JPG";
-import dark from "./themeImgs/dark.JPG";
-import greenImg from "./themeImgs/green.JPG";
-import modernTech from "./themeImgs/modernTech.JPG";
-import vintage from "./themeImgs/vintage.JPG";
-import yellow from "./themeImgs/yellow.JPG"; 
+import burgundy from "./themeImgs/burgundy.jpg";
+import tech from "./themeImgs/tech.jpg";
+import vintage from "./themeImgs/vintage.jpg";
+import mono from "./themeImgs/mono.jpg";
+import brightBlue from "./themeImgs/brightBlue.jpg";
+import pink from "./themeImgs/pink.jpg";
 
 export const theme = {
 	colors: {
@@ -14,8 +14,9 @@ export const theme = {
 	}
 }
 
-const sunsetTheme = {
+const robBurgundy = {
 	name: "Ron Burgundy",
+	key: "ronBurgundy",
 	colors: {
 		background: "#5D3137",
 		footerStripe: "#7E4950",
@@ -37,8 +38,9 @@ const sunsetTheme = {
 	}
 };
 
-const techTheme = {
+const modernTech = {
 	name: "Modern Tech",
+	key: "modernTech",
 	colors: {
 		background: "#1F3137",
 		footerStripe: "#779FAC",
@@ -56,14 +58,15 @@ const techTheme = {
 		body: "Muli"
 	},
 	images: {
-		thumbnail: modernTech
+		thumbnail: tech
 	}
 };
 
-const relaxedGreens = {
-	name: "Relaxed Greens",
+const monoTheme = {
+	name: "Mono Theme",
+	key: "monoTheme",
 	colors: {
-		background: "#A4B063",
+		background: "#A0B04A",
 		footerStripe: "#C1CC87",
 		heading: "#ffffff",
 		text: "#ffffff"
@@ -79,12 +82,13 @@ const relaxedGreens = {
 		body: "Cabin"
 	},
 	images: {
-		thumbnail: greenImg
+		thumbnail: mono
 	}
 };
 
 const vintageVibes = {
 	name: "Vintage Vibes",
+	key: "vintageVibes",
 	colors: {
 		background: "#FCE9DB",
 		footerStripe: "#013914",
@@ -106,8 +110,9 @@ const vintageVibes = {
 	}
 };
 
-const mellowYellow = {
-	name: "Mellow Yellow",
+const blueSparks = {
+	name: "Blue Sparks",
+	key: "blueSparks",
 	colors: {
 		background: "#fae16c",
 		footerStripe: "#001d2e",
@@ -125,12 +130,13 @@ const mellowYellow = {
 		body: "Muli"
 	},
 	images: {
-		thumbnail: yellow
+		thumbnail: brightBlue
 	}
 };
 
-const darkTheme = {
-	name: "Dark Theme",
+const pinkPower = {
+	name: "Pink Power",
+	key: "pinkPower",
 	colors: {
 		background: "#151717",
 		footerStripe: "#628288",
@@ -148,10 +154,10 @@ const darkTheme = {
 		body: "Muli"
 	},
 	images: {
-		thumbnail: dark
+		thumbnail: pink
 	}
 };
 
-export const postThemes = [sunsetTheme, techTheme, relaxedGreens, vintageVibes, mellowYellow, darkTheme]
+export const postThemes = [robBurgundy, modernTech, vintageVibes, monoTheme, blueSparks, pinkPower]
 
 export default postThemes;
