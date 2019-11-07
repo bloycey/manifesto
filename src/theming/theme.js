@@ -158,15 +158,6 @@ const pinkPower = {
 	}
 };
 
-export const themeObject = {
-	ronBurgundy,
-	modernTech,
-	monoTheme,
-	vintageVibes,
-	blueSparks,
-	pinkPower
-};
-
 export const postThemes = [ronBurgundy, modernTech, vintageVibes, monoTheme, blueSparks, pinkPower]
 
 export default postThemes;

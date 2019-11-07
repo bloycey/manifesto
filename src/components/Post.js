@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import {themeObject} from "../theming/theme";
+import allThemes from "../theming/theme";
 
 const PostTitle = styled.h1`
 	padding-top: 220px;
@@ -43,7 +43,11 @@ const Post = ({ theme, title, body }) => {
 		return null;
 	}
 
-	const currentTheme = themeObject[theme];
+	const findCurrentTheme = (themeKey, themeArray) => {
+		const [filteredArray] = themeArray.filter(theme => theme.key === themeKey);
+		return filteredArray;
+	}
+	const currentTheme = findCurrentTheme(theme, allThemes);
 
 	return (
 		<PostWrapper theme={currentTheme}>
