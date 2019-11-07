@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import styled from '@emotion/styled';
 import { compressToEncodedURIComponent as compress } from "lz-string";
 import { Link } from "react-router-dom";
 
+import ActionButtons from "./formElements/ActionButtons";
 import Container from "../components/layoutHelpers/Container";
 import FormPageOne from "./formElements/formPages/formPageOne";
 import FormPageTwo from "./formElements/formPages/formPageTwo";
 import FormPageThree from "./formElements/formPages/formPageThree";
+import Post from "../components/Post";
 import { postThemes } from "../theming/theme";
 
 const CreateBlogWrapper = styled.section`
@@ -24,10 +26,9 @@ const MessagesContainer = styled.div`
 	}
 `;
 
-
 class CreateBlog extends Component {
 	state = {
-		formProgress: 3,
+		formProgress: 1,
 		title: "",
 		body: "",
 		author: "",
@@ -95,44 +96,56 @@ class CreateBlog extends Component {
 			theme
 		} = this.state;
 		return (
-			<CreateBlogWrapper>
-				<Container>
-					<form onSubmit={this.handleSubmit}>
-						{ formProgress === 1 &&
-							<FormPageOne
-								title={title}
-								body={body}
-								onChangeFn={this.handleChange}
-								handleNextFn={this.handleNext}
-							/>
-						}
-						{ formProgress === 2 &&
-							<FormPageTwo
-								author={author}
-								website={website}
-								onChangeFn={this.handleChange}
-								onRadioChangeFn={this.handleRadioChange}
-								onNextFn={this.handleNext}
-								onPrevFn={this.handlePrev}
-							/>
-						}
-						{ formProgress === 3 &&
-							<FormPageThree
-								themes={postThemes}
-								selectedTheme={theme}
-								themeSelectFn={this.handleChooseTheme}
-								onNextFn={this.handleNext}
-								onPrevFn={this.handlePrev}
-							/>
-						}
-					</form>
-						{linkToPost &&
-							<MessagesContainer>
-								Blog Posted. Click <Link to={linkToPost}>here</Link> to view.
-							</MessagesContainer>
-						}
-				</Container>
-			</CreateBlogWrapper>
+			<Fragment>
+				<CreateBlogWrapper>
+					<Container>
+						<form onSubmit={this.handleSubmit}>
+							{ formProgress === 1 &&
+								<FormPageOne
+									title={title}
+									body={body}
+									onChangeFn={this.handleChange}
+									handleNextFn={this.handleNext}
+								/>
+							}
+							{ formProgress === 2 &&
+								<FormPageTwo
+									author={author}
+									website={website}
+									onChangeFn={this.handleChange}
+									onRadioChangeFn={this.handleRadioChange}
+									onNextFn={this.handleNext}
+									onPrevFn={this.handlePrev}
+								/>
+							}
+							{ formProgress === 3 &&
+								<FormPageThree
+									themes={postThemes}
+									selectedTheme={theme}
+									themeSelectFn={this.handleChooseTheme}
+									onNextFn={this.handleNext}
+									onPrevFn={this.handlePrev}
+								/>
+							}
+						</form>
+					</Container>
+				</CreateBlogWrapper>
+				{ formProgress === 3 &&
+					<Fragment>
+						<Post theme={theme} title={title} body={body}/>
+						<CreateBlogWrapper>
+							<Container>
+							<ActionButtons onPrevFn={this.handlePrev} onSaveFn={this.handleSave} onSubmitFn={this.handleSubmit} />
+									{linkToPost &&
+										<MessagesContainer>
+											Blog Posted. Click <Link to={linkToPost}>here</Link> to view.
+										</MessagesContainer>
+									}
+							</Container>
+						</CreateBlogWrapper>
+					</Fragment>
+				}
+			</Fragment>
 		);
 	}
 }

@@ -38,7 +38,7 @@ const Divider = styled.hr`
 	margin-bottom: 60px;
 `
 
-const Post = (props) => {
+const Post = ({ props }) => {
 	const { data } = props.match.params;
 	const [title, text] = data.split("__");
 	const decompressedTitle = decompress(title);

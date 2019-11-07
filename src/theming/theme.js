@@ -14,7 +14,7 @@ export const theme = {
 	}
 }
 
-const robBurgundy = {
+const ronBurgundy = {
 	name: "Ron Burgundy",
 	key: "ronBurgundy",
 	colors: {
@@ -30,8 +30,8 @@ const robBurgundy = {
 		headingLineHeight: "1.4"
 	},
 	fonts: {
-		heading: "Arvo",
-		body: "Lato"
+		heading: "Crimson Text",
+		body: "Work Sans"
 	},
 	images: {
 		thumbnail: burgundy
@@ -66,8 +66,8 @@ const monoTheme = {
 	name: "Mono Theme",
 	key: "monoTheme",
 	colors: {
-		background: "#A0B04A",
-		footerStripe: "#C1CC87",
+		background: "#013914",
+		footerStripe: "#A1A1A1",
 		heading: "#ffffff",
 		text: "#ffffff"
 	},
@@ -78,8 +78,8 @@ const monoTheme = {
 		headingLineHeight: "1.4"
 	},
 	fonts: {
-		heading: "Roboto Condensed",
-		body: "Cabin"
+		heading: "Montserrat",
+		body: "Montserrat"
 	},
 	images: {
 		thumbnail: mono
@@ -103,7 +103,7 @@ const vintageVibes = {
 	},
 	fonts: {
 		heading: "Playfair Display",
-		body: "Lato"
+		body: "Gothic A1"
 	},
 	images: {
 		thumbnail: vintage
@@ -114,10 +114,10 @@ const blueSparks = {
 	name: "Blue Sparks",
 	key: "blueSparks",
 	colors: {
-		background: "#fae16c",
-		footerStripe: "#001d2e",
-		heading: "#001d2e",
-		text: "#001d2e"
+		background: "#20C1BD",
+		footerStripe: "#29DBD7",
+		heading: "#ffffff",
+		text: "#ffffff"
 	},
 	sizes: {
 		heading: "48px",
@@ -126,8 +126,8 @@ const blueSparks = {
 		headingLineHeight: "1.4"
 	},
 	fonts: {
-		heading: "Merriweather",
-		body: "Muli"
+		heading: "Quicksand",
+		body: "Quicksand"
 	},
 	images: {
 		thumbnail: brightBlue
@@ -138,10 +138,10 @@ const pinkPower = {
 	name: "Pink Power",
 	key: "pinkPower",
 	colors: {
-		background: "#151717",
-		footerStripe: "#628288",
+		background: "#DF0054",
+		footerStripe: "#FF75A9",
 		heading: "#ffffff",
-		text: "#b5b5b5"
+		text: "#ffffff"
 	},
 	sizes: {
 		heading: "48px",
@@ -150,14 +150,23 @@ const pinkPower = {
 		headingLineHeight: "1.4"
 	},
 	fonts: {
-		heading: "Oswald",
-		body: "Muli"
+		heading: "Lobster",
+		body: "Work Sans"
 	},
 	images: {
 		thumbnail: pink
 	}
 };
 
-export const postThemes = [robBurgundy, modernTech, vintageVibes, monoTheme, blueSparks, pinkPower]
+export const themeObject = {
+	ronBurgundy,
+	modernTech,
+	monoTheme,
+	vintageVibes,
+	blueSparks,
+	pinkPower
+};
+
+export const postThemes = [ronBurgundy, modernTech, vintageVibes, monoTheme, blueSparks, pinkPower]
 
 export default postThemes;
