@@ -1,7 +1,5 @@
 import React, { Fragment } from "react";
-import styled from '@emotion/styled';
 
-import Button from "../../Button";
 import FloatedContent from "../FloatedContent";
 import ThemeOptions from "../ThemeOptions";
 

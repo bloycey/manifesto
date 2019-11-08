@@ -32,6 +32,8 @@ const PostWrapper = styled.div`
 `
 const Divider = styled.hr`
 	border-color: #ffffff;
+	border-left: none;
+	border-top: none;
 	width: 15%;
 	display: inline-block;
 	margin-top: 40px;

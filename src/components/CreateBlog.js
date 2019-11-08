@@ -28,13 +28,13 @@ const MessagesContainer = styled.div`
 
 class CreateBlog extends Component {
 	state = {
-		formProgress: 1,
+		formProgress: 2,
 		title: "",
 		body: "",
 		author: "",
 		website: "",
 		theme: "ronBurgundy",
-		showDate: true,
+		showDate: "true",
 		linkToPost: null
 	}
 
@@ -56,9 +56,16 @@ class CreateBlog extends Component {
 	}
 
 	handleRadioChange = e => {
-		const val = this.state[e.target.name];
+		const radioName = e.target.getAttribute('data-name');
+		const radioVal = e.target.getAttribute('data-value');
+		const val = this.state[radioName];
+
+		if( radioVal === val){
+			return null;
+		}
+
 		this.setState({
-			[e.target.name]: !val
+			[radioName]: val === "true" ? "false" : "true"
 		})
 	}
 
@@ -93,7 +100,8 @@ class CreateBlog extends Component {
 			body,
 			author,
 			website,
-			theme
+			theme,
+			showDate
 		} = this.state;
 		return (
 			<Fragment>
@@ -114,6 +122,7 @@ class CreateBlog extends Component {
 									website={website}
 									onChangeFn={this.handleChange}
 									onRadioChangeFn={this.handleRadioChange}
+									showDate={showDate}
 									onNextFn={this.handleNext}
 									onPrevFn={this.handlePrev}
 								/>

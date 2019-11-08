@@ -2,8 +2,8 @@ import React, { Fragment } from "react";
 import styled from '@emotion/styled';
 
 import Button from "../../Button";
+import BooleanOptions from "../BooleanOptions";
 import SingleInput from "../SingleInput";
-import YesNoBoolean from "../YesNoBoolean";
 
 const OptionalTag = styled.div`
 	color: #9f9f9f;
@@ -20,7 +20,7 @@ const ButtonWrapperPrevNext = styled.div`
 	}
 `;
 
-const FormPageTwo = ({ author, website, onChangeFn, onRadioChangeFn, onNextFn, onPrevFn }) => {
+const FormPageTwo = ({ author, website, showDate, onChangeFn, onRadioChangeFn, onNextFn, onPrevFn }) => {
 	return (
 		<Fragment>
 			<OptionalTag>*Optional</OptionalTag>
@@ -42,7 +42,7 @@ const FormPageTwo = ({ author, website, onChangeFn, onRadioChangeFn, onNextFn, o
 				onChangeFn={onChangeFn}
 			/>
 			<div>
-				<YesNoBoolean onChangeFn={onRadioChangeFn}/>
+				<BooleanOptions showDate={showDate} onChangeFn={onRadioChangeFn} />
 			</div>
 			<ButtonWrapperPrevNext>
 				<Button buttonStyle="outline" buttonType="button" clickEvent={onPrevFn}>Previous</Button>

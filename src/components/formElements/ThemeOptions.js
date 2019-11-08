@@ -1,6 +1,6 @@
 import React from "react";
 import styled from '@emotion/styled';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import SelectedCheck from './SelectedCheck';
 
 const ThemeCardsWrapper = styled.div`
 	display: flex;
@@ -21,19 +21,6 @@ const ThemeName = styled.p`
 	margin-bottom: 30px;
 `;
 
-const SelectedCheck = styled.div`
-	display: inline-block;
-	position: absolute;
-	right: 0;
-	top: 0;
-	transform: translate(20%, -25%);
-
-	svg {
-		width: 40px;
-		height: 40px;
-		color: ${props => props.theme.colors.secondary};
-	}
-`
 
 const ThemeOptions = ({themes, onClickFn, selectedTheme}) => {
 	return (
@@ -41,13 +28,11 @@ const ThemeOptions = ({themes, onClickFn, selectedTheme}) => {
 			{themes.map(theme => (
 				<CardWrapper key={theme.name}>
 					{selectedTheme === theme.key &&
-						<SelectedCheck>
-							<CheckCircleIcon />
-						</SelectedCheck>
+						<SelectedCheck />
 					}
-					<img 
+					<img
 						src={theme.images.thumbnail}
-						alt={`${theme.name} preview`} 
+						alt={`${theme.name} preview`}
 						data-value={theme.key}
 						onClick={onClickFn}
 					/>
