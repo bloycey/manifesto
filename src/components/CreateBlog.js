@@ -34,7 +34,7 @@ class CreateBlog extends Component {
 		author: "",
 		website: "",
 		theme: "ronBurgundy",
-		showDate: "true",
+		showDate: "Yes",
 		linkToPost: null
 	}
 
@@ -48,6 +48,12 @@ class CreateBlog extends Component {
 			linkToPost
 		})
 	}
+
+	handleChangeDate = value => {
+		this.setState({
+			showDate: value
+		});
+	};
 
 	handleChange = e => {
 		this.setState({
@@ -68,6 +74,7 @@ class CreateBlog extends Component {
 			[radioName]: val === "true" ? "false" : "true"
 		})
 	}
+
 
 	handleChooseTheme = e => {
 		const themeName = e.target.getAttribute('data-value');
@@ -121,10 +128,11 @@ class CreateBlog extends Component {
 									author={author}
 									website={website}
 									onChangeFn={this.handleChange}
-									onRadioChangeFn={this.handleRadioChange}
+									onChangeDate={this.handleChangeDate}
 									showDate={showDate}
 									onNextFn={this.handleNext}
 									onPrevFn={this.handlePrev}
+									dateLabelText="Show Date"
 								/>
 							}
 							{ formProgress === 3 &&

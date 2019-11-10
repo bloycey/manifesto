@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import styled from '@emotion/styled';
 
 import Button from "../../Button";
-import BooleanOptions from "../BooleanOptions";
+import RadioOptions from "../RadioOptions";
 import SingleInput from "../SingleInput";
 
 const OptionalTag = styled.div`
@@ -20,7 +20,7 @@ const ButtonWrapperPrevNext = styled.div`
 	}
 `;
 
-const FormPageTwo = ({ author, website, showDate, onChangeFn, onRadioChangeFn, onNextFn, onPrevFn }) => {
+const FormPageTwo = ({ author, website, showDate, onChangeFn, onNextFn, onPrevFn, onChangeDate, dateLabelText }) => {
 	return (
 		<Fragment>
 			<OptionalTag>*Optional</OptionalTag>
@@ -41,9 +41,7 @@ const FormPageTwo = ({ author, website, showDate, onChangeFn, onRadioChangeFn, o
 				value={website}
 				onChangeFn={onChangeFn}
 			/>
-			<div>
-				<BooleanOptions showDate={showDate} onChangeFn={onRadioChangeFn} />
-			</div>
+			<RadioOptions radioValue={showDate} onChangeFn={onChangeDate} options={["Yes", "No"]} labelText={dateLabelText}/>
 			<ButtonWrapperPrevNext>
 				<Button buttonStyle="outline" buttonType="button" clickEvent={onPrevFn}>Previous</Button>
 				<Button buttonStyle="outline" buttonType="button" clickEvent={onNextFn}>Next</Button>
