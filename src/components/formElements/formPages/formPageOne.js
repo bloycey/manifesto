@@ -32,9 +32,15 @@ const FormPageOne = ({ title, body, onChangeFn, handleNextFn }) => {
 				value={body}
 				onChangeFn={onChangeFn}
 			/>
-			<ButtonWrapperNext>
-				<Button buttonStyle="outline" buttonType="button" clickEvent={handleNextFn}>Next</Button>
-			</ButtonWrapperNext>
+				<ButtonWrapperNext>
+					{title && body
+						?
+						<Button buttonStyle="outline" buttonType="button" clickEvent={handleNextFn}>Next</Button>
+						:
+						<Button buttonStyle="outline" buttonType="button" clickEvent={() => null}>Add a title and body to continue</Button>
+					}
+				</ButtonWrapperNext>
+			}
 		</Fragment>
 	)
 }
