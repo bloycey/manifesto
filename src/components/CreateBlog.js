@@ -8,11 +8,14 @@ import Container from "../components/layoutHelpers/Container";
 import FormPageOne from "./formElements/formPages/formPageOne";
 import FormPageTwo from "./formElements/formPages/formPageTwo";
 import FormPageThree from "./formElements/formPages/formPageThree";
-import Post from "../components/Post";
+import Post, { findCurrentTheme } from "../components/Post";
 import { postThemes } from "../theming/theme";
 
 const CreateBlogWrapper = styled.section`
-	background-color: ${props => props.theme.colors.primary};
+	background-color: ${props => props.formProgress === 3
+		? props.currentTheme.colors.background
+		: props.theme.colors.primary
+	};
 	padding-top: 72px;
 	padding-bottom: 72px;
 `;
@@ -26,13 +29,49 @@ const MessagesContainer = styled.div`
 	}
 `;
 
+const testData = {
+	title: "November for Beginners",
+	author: "Rita Dove",
+	body:`
+Snow would be the easy
+way out—that softening
+sky like a sigh of relief
+at finally being allowed
+to yield. No dice.
+We stack twigs for burning
+in glistening patches
+but the rain won’t give.
+
+So we wait, breeding
+mood, making music
+of decline. We sit down
+in the smell of the past
+and rise in a light
+that is already leaving.
+We ache in secret,
+memorizing
+
+a gloomy line
+or two of German.
+When spring comes
+we promise to act
+the fool. Pour,
+rain! Sail, wind,
+with your cargo of zithers!`,
+	date: "15th November, 2019",
+	website: "https://www.poetryfoundation.org/poetrymagazine/poems/55630/november-for-beginners-56d2376810b48"
+}
+
+const useTestData = true;
+
+
 class CreateBlog extends Component {
 	state = {
-		formProgress: 2,
-		title: "",
-		body: "",
-		author: "",
-		website: "",
+		formProgress: 3,
+		title: useTestData ? testData.title : "",
+		body: useTestData ? testData.body : "",
+		author: useTestData ? testData.author : "",
+		website: useTestData ? testData.website : "",
 		theme: "ronBurgundy",
 		showDate: "Yes",
 		linkToPost: null
@@ -110,9 +149,12 @@ class CreateBlog extends Component {
 			theme,
 			showDate
 		} = this.state;
+
+		const currentTheme = findCurrentTheme(theme);
+
 		return (
 			<Fragment>
-				<CreateBlogWrapper>
+				<CreateBlogWrapper formProgress={formProgress} currentTheme={currentTheme}>
 					<Container>
 						<form onSubmit={this.handleSubmit}>
 							{ formProgress === 1 &&
@@ -149,8 +191,15 @@ class CreateBlog extends Component {
 				</CreateBlogWrapper>
 				{ formProgress === 3 &&
 					<Fragment>
-						<Post theme={theme} title={title} body={body}/>
-						<CreateBlogWrapper>
+						<Post
+							theme={theme}
+							title={title}
+							body={body}
+							author={author}
+							website={website}
+							preview={true}
+						/>
+						<CreateBlogWrapper formProgress={formProgress} currentTheme={currentTheme}>
 							<Container>
 							<ActionButtons onPrevFn={this.handlePrev} onSaveFn={this.handleSave} onSubmitFn={this.handleSubmit} />
 									{linkToPost &&
