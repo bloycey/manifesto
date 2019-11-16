@@ -2,6 +2,7 @@ import burgundy from "./themeImgs/burgundy.jpg";
 import tech from "./themeImgs/tech.jpg";
 import vintage from "./themeImgs/vintage.jpg";
 import mono from "./themeImgs/mono.jpg";
+import monoLight from "./themeImgs/monoLight.jpg";
 import brightBlue from "./themeImgs/brightBlue.jpg";
 import pink from "./themeImgs/pink.jpg";
 
@@ -87,6 +88,30 @@ const monoTheme = {
 	}
 };
 
+const monoLightTheme = {
+	name: "Mono Light Theme",
+	key: "monoLightTheme",
+	colors: {
+		background: "#fffffa",
+		footerStripe: "#A1A1A1",
+		heading: "#333333",
+		text: "#333333"
+	},
+	sizes: {
+		heading: "48px",
+		body: "20px",
+		bodyLineHeight: "1.6",
+		headingLineHeight: "1.4"
+	},
+	fonts: {
+		heading: "Open Sans",
+		body: "Georgia"
+	},
+	images: {
+		thumbnail: monoLight
+	}
+};
+
 const vintageVibes = {
 	name: "Vintage Vibes",
 	key: "vintageVibes",
@@ -159,6 +184,6 @@ const pinkPower = {
 	}
 };
 
-export const postThemes = [ronBurgundy, modernTech, vintageVibes, monoTheme, blueSparks, pinkPower]
+export const postThemes = [ronBurgundy, modernTech, vintageVibes, monoTheme, blueSparks, pinkPower, monoLightTheme]
 
 export default postThemes;
